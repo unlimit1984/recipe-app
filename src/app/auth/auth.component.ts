@@ -33,12 +33,11 @@ export class AuthComponent {
         .subscribe(resData => {
           console.log(resData);
           this.isLoading = false;
-        }, error => {
-          console.log(error);
-          this.error = 'An error occurred!';
+        }, errorMessage => {
+          console.log(errorMessage);
+          this.error = errorMessage;
           this.isLoading = false;
         });
-      // console.log(authForm.value);
     }
     authForm.reset();
   }
