@@ -8,7 +8,25 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { RecipeItemComponent } from './recipe-list/recipe-item/recipe-item.component';
 import { RecipeStartComponent } from './recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../auth/auth.guard';
+import { RecipesResolverService } from './recipes-resolver.service';
 import { RecipesRoutingModule } from './recipes-routing.module';
+import { DropdownDirective } from '../shared/dropdown.directive';
+
+const routes: Routes = [
+  {
+    path: 'recipes',
+    component: RecipesComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {path: '', component: RecipeStartComponent},
+      {path: 'new', component: RecipeEditComponent},
+      {path: ':id', component: RecipeDetailComponent, resolve: [RecipesResolverService]},
+      {path: ':id/edit', component: RecipeEditComponent, resolve: [RecipesResolverService]}
+    ]
+  }
+];
 
 @NgModule({
   declarations: [
@@ -20,7 +38,8 @@ import { RecipesRoutingModule } from './recipes-routing.module';
     RecipeEditComponent
   ],
   imports: [
-    RecipesRoutingModule,
+    // RouterModule.forChild(routes), // Option 1
+    RecipesRoutingModule, //Option 2
     CommonModule,
     ReactiveFormsModule
   ],
