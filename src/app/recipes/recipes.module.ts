@@ -42,15 +42,15 @@ const routes: Routes = [
     RecipesRoutingModule, //Option 2
     CommonModule,
     ReactiveFormsModule
-  ],
-  exports: [
-    RecipesComponent,
-    RecipeListComponent,
-    RecipeDetailComponent,
-    RecipeItemComponent,
-    RecipeStartComponent,
-    RecipeEditComponent
   ]
+  // exports: [
+  //   RecipesComponent,
+  //   RecipeListComponent,
+  //   RecipeDetailComponent,
+  //   RecipeItemComponent,
+  //   RecipeStartComponent,
+  //   RecipeEditComponent
+  // ]
 })
 export class RecipesModule {
 
