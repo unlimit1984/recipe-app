@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { RecipesComponent } from './recipes.component';
@@ -8,11 +7,11 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { RecipeItemComponent } from './recipe-list/recipe-item/recipe-item.component';
 import { RecipeStartComponent } from './recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { AuthGuard } from '../auth/auth.guard';
 import { RecipesResolverService } from './recipes-resolver.service';
 import { RecipesRoutingModule } from './recipes-routing.module';
-import { DropdownDirective } from '../shared/dropdown.directive';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   {
@@ -40,8 +39,9 @@ const routes: Routes = [
   imports: [
     // RouterModule.forChild(routes), // Option 1
     RecipesRoutingModule, //Option 2
-    CommonModule,
-    ReactiveFormsModule
+    // CommonModule,
+    ReactiveFormsModule,
+    SharedModule
   ]
   // exports: [
   //   RecipesComponent,
