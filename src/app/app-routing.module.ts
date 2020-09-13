@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthComponent } from './auth/auth.component';
 
 const appRoutes: Routes = [
   // {path: '', redirectTo: 'recipes', pathMatch: 'full'},
-  {path: '', redirectTo: '/recipes', pathMatch: 'full'}
+  {path: '', redirectTo: '/recipes', pathMatch: 'full'},
   // {
   //   path: 'recipes',
   //   component: RecipesComponent,
@@ -16,6 +15,9 @@ const appRoutes: Routes = [
   //     {path: ':id/edit', component: RecipeEditComponent, resolve: [RecipesResolverService]}
   //   ]
   // },
+  //for lazy-loading
+  {path: 'recipes', loadChildren: './recipes/recipes.module#RecipesModule'}
+  // {path: 'recipes', loadChildren: () => import('./recipes/recipes.module').then(m => m.RecipesModule)}
   // {path: 'shopping-list', component: ShoppingListComponent},
   // {path: 'auth', component: AuthComponent}
 ];
