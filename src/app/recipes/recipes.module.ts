@@ -39,18 +39,9 @@ const routes: Routes = [
   imports: [
     // RouterModule.forChild(routes), // Option 1
     RecipesRoutingModule, //Option 2
-    // CommonModule,
     ReactiveFormsModule,
     SharedModule
   ]
-  // exports: [
-  //   RecipesComponent,
-  //   RecipeListComponent,
-  //   RecipeDetailComponent,
-  //   RecipeItemComponent,
-  //   RecipeStartComponent,
-  //   RecipeEditComponent
-  // ]
 })
 export class RecipesModule {
 

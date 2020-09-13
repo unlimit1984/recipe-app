@@ -16,19 +16,7 @@ import { CoreModule } from './core.module';
   declarations: [
     AppComponent,
     HeaderComponent,
-    // ShoppingListComponent,
-    // ShoppingEditComponent,
-    // RecipesComponent,
-    // RecipeListComponent,
-    // RecipeDetailComponent,
-    // RecipeItemComponent,
-    // DropdownDirective, //moved to SharedModule
-    // RecipeStartComponent,
-    // RecipeEditComponent,
     AuthComponent,
-    // LoadingSpinnerComponent, //moved to SharedModule
-    // AlertComponent, //moved to SharedModule
-    // PlaceholderDirective //moved to SharedModule
   ],
   imports: [
     BrowserModule,
@@ -42,7 +30,6 @@ import { CoreModule } from './core.module';
     CoreModule
   ],
   bootstrap: [AppComponent]
-  // entryComponents: [AlertComponent]
 })
 export class AppModule {
 }
