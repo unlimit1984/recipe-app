@@ -12,7 +12,9 @@ import { SharedModule } from '../shared/shared.module';
     ShoppingEditComponent
   ],
   imports: [
-    RouterModule.forChild([{path: 'shopping-list', component: ShoppingListComponent}]),
+    // RouterModule.forChild([{path: 'shopping-list', component: ShoppingListComponent}]),
+    // for lazy-loading
+    RouterModule.forChild([{path: '', component: ShoppingListComponent}]),
     FormsModule,
     SharedModule
   ]

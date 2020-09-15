@@ -9,7 +9,9 @@ import { RouterModule } from '@angular/router';
     AuthComponent
   ],
   imports: [
-    RouterModule.forChild([{path: 'auth', component: AuthComponent}]),
+    // RouterModule.forChild([{path: 'auth', component: AuthComponent}]),
+    // for lazy-loading
+    RouterModule.forChild([{path: '', component: AuthComponent}]),
     FormsModule,
     SharedModule
   ]
