@@ -59,6 +59,12 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     this.slForm.reset();
   }
 
+  onDelete() {
+    // this.shoppingListService.deleteIngredient(this.editingItemIndex);
+    this.store.dispatch(new ShoppingListActions.DeleteIngredient(this.editingItemIndex));
+    this.onClear();
+  }
+
   onClear() {
     this.slForm.reset();
     this.editMode = false;
@@ -66,11 +72,5 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-  }
-
-  onDelete() {
-    // this.shoppingListService.deleteIngredient(this.editingItemIndex);
-    this.store.dispatch(new ShoppingListActions.DeleteIngredient(this.editingItemIndex));
-    this.onClear();
   }
 }
