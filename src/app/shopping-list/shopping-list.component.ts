@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from './shopping-list.service';
 import { LoggingService } from '../logging.service';
+import * as ShoppingListActions from './store/shopping-list.actions';
 import * as fromShoppingList from './store/shopping-list.reducer';
 
 @Component({
@@ -35,12 +36,14 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     this.loggingService.printLog('Hello from ShoppingListComponent ngOnInit');
   }
 
-  ngOnDestroy(): void {
-    // this.subscription.unsubscribe();
+  onEditItem(index: number) {
+    // this.shoppingListService.startedEditing.next(index);
+    this.store.dispatch(new ShoppingListActions.StartEdit(index));
 
   }
 
-  onEditItem(index: number) {
-    this.shoppingListService.startedEditing.next(index);
+  ngOnDestroy(): void {
+    // this.subscription.unsubscribe();
+
   }
 }
