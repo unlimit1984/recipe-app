@@ -38,7 +38,7 @@ export function shoppingListReducer(
     case ShoppingListActions.UPDATE_INGREDIENT:
       const ingredient = state.ingredients[action.payload.index];
       const updatedIngredient = {
-        ...ingredient,
+        ...ingredient, //we should leave the old value, because it may contain the ID or anything that shouldn't be overwritten
         ...action.payload.ingredient
       };
       const updatedIngredients = [...state.ingredients];
