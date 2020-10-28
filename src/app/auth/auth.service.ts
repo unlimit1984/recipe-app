@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { catchError, tap } from 'rxjs/operators';
-import { BehaviorSubject, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { environment } from '../../environments/environment';
 
@@ -46,20 +46,22 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return this.http.post<AuthResponseData>(
+    return this.http.post<AuthResponseData>( // in case of catchError, the observable will be completed, but new login action will create a new observable
       // 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBirC5_aMPvVIquVNfmEkqZghzFMXUqsIk',
       // Option 1
       // 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' +environment.firebaseAPIKey,
       // Option 2
       `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseAPIKey}`,
       {email: email, password: password, returnSecureToken: true})
-      .pipe(catchError(this.handleError), tap(resData => {
-        this.handleAuthentication(
-          resData.email,
-          resData.localId,
-          resData.idToken,
-          +resData.expiresIn);
-      }));
+      .pipe(
+        catchError(this.handleError),
+        tap(resData => {
+          this.handleAuthentication(
+            resData.email,
+            resData.localId,
+            resData.idToken,
+            +resData.expiresIn);
+        }));
   }
 
   autoLogin() {
