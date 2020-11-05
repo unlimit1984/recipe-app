@@ -31,39 +31,6 @@ export class AuthService {
     private store: Store<fromApp.AppState>) {
   }
 
-  signup(email: string, password: string) {
-    return this.http.post<AuthResponseData>(
-      // 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBirC5_aMPvVIquVNfmEkqZghzFMXUqsIk',
-      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseAPIKey}`,
-      {email: email, password: password, returnSecureToken: true})
-      .pipe(catchError(this.handleError), tap(resData => {
-        this.handleAuthentication(
-          resData.email,
-          resData.localId,
-          resData.idToken,
-          +resData.expiresIn);
-      }));
-  }
-
-  login(email: string, password: string) {
-    return this.http.post<AuthResponseData>( // in case of catchError, the observable will be completed, but new login action will create a new observable
-      // 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBirC5_aMPvVIquVNfmEkqZghzFMXUqsIk',
-      // Option 1
-      // 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' +environment.firebaseAPIKey,
-      // Option 2
-      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseAPIKey}`,
-      {email: email, password: password, returnSecureToken: true})
-      .pipe(
-        catchError(this.handleError),
-        tap(resData => {
-          this.handleAuthentication(
-            resData.email,
-            resData.localId,
-            resData.idToken,
-            +resData.expiresIn);
-        }));
-  }
-
   autoLogin() {
     const userData: {
       email: string,
@@ -94,7 +61,7 @@ export class AuthService {
   logout() {
     // this.user.next(null);
     this.store.dispatch(new AuthActions.Logout());
-    this.router.navigate(['/auth']);
+    // this.router.navigate(['/auth']);
     //localStorage.clear(); //in case of only userData
     localStorage.removeItem('userData');
     if (this.tokenExpirationTimer) {
