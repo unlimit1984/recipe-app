@@ -110,7 +110,7 @@ export class AuthEffects {
       } = JSON.parse(localStorage.getItem('userData'));
 
       if (!userData) {
-        return { type: 'DUMMY'};
+        return { type: 'DUMMY'}; // simple dummy action created on the fly
       }
 
       const loadedUser = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpirationDate));
@@ -126,7 +126,7 @@ export class AuthEffects {
         // const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
         // this.autoLogout(expirationDuration);
       }
-      return { type: 'DUMMY'};
+      return { type: 'DUMMY'}; // simple dummy action created on the fly
     })
   );
 
